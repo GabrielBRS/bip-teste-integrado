@@ -1,12 +1,23 @@
 import { Component, computed, inject, OnInit, signal, WritableSignal } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Observable } from 'rxjs';
 import {Beneficio} from '../model/beneficio.model';
-import {BeneficioService} from '../service/beneficio';
+import {BeneficioService} from '../service/beneficio-service';
+import {CommonModule, DecimalPipe, NgClass} from '@angular/common';
+import {RouterModule} from '@angular/router';
 
 
 @Component({
   selector: 'app-beneficio',
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    DecimalPipe,
+    NgClass,
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule
+  ],
   templateUrl: './beneficio.html',
   styleUrls: ['./beneficio.scss']
 })

@@ -1,8 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Beneficio} from '../model/beneficio.model';
-
+import { Beneficio } from '../model/beneficio.model'; // Corrigido para apontar para a pasta model
 
 @Injectable({
   providedIn: 'root'
@@ -10,23 +9,18 @@ import {Beneficio} from '../model/beneficio.model';
 export class BeneficioService {
 
   private http = inject(HttpClient);
-
   private readonly apiUrl = 'http://localhost:8080/backend-module/api/v1/beneficios';
 
   listarTodos(): Observable<Beneficio[]> {
     return this.http.get<Beneficio[]>(this.apiUrl);
   }
 
-  buscarPorId(id: number): Observable<Beneficio> {
-    return this.http.get<Beneficio>(`${this.apiUrl}/${id}`);
+  atualizar(id: number, beneficio: Beneficio): Observable<Beneficio> {
+    return this.http.put<Beneficio>(`${this.apiUrl}/${id}`, beneficio);
   }
 
   criar(beneficio: Partial<Beneficio>): Observable<Beneficio> {
     return this.http.post<Beneficio>(this.apiUrl, beneficio);
-  }
-
-  atualizar(id: number, beneficio: Beneficio): Observable<Beneficio> {
-    return this.http.put<Beneficio>(`${this.apiUrl}/${id}`, beneficio);
   }
 
   deletar(id: number): Observable<void> {
@@ -36,5 +30,4 @@ export class BeneficioService {
   transferir(request: { fromId: number, toId: number, amount: number }): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/transferir`, request);
   }
-
 }
