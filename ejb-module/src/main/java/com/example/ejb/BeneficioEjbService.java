@@ -4,9 +4,10 @@ import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.OptimisticLockException;
 import jakarta.persistence.PersistenceContext;
+
 import java.math.BigDecimal;
+import java.util.List;
 
 @Stateless
 public class BeneficioEjbService {
@@ -17,32 +18,36 @@ public class BeneficioEjbService {
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void transfer(Long fromId, Long toId, BigDecimal amount) {
 
-        if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("Valor da transferência deve ser positivo.");
-        }
+    }
 
-        Beneficio from = em.find(Beneficio.class, fromId);
-        Beneficio to   = em.find(Beneficio.class, toId);
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public List<Beneficio> listarTodos() {
+        return em.createQuery("SELECT b FROM Beneficio b", Beneficio.class)
+                .getResultList();
+    }
 
-        if (from == null || to == null) {
-            throw new IllegalArgumentException("Conta de origem ou destino não encontrada.");
-        }
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public Beneficio buscarPorId(Long id) {
+        return em.find(Beneficio.class, id);
+    }
 
-        if (from.getValor().compareTo(amount) < 0) {
-            throw new SaldoInsuficienteException("Saldo insuficiente para a transferência.");
-        }
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public Beneficio criar(Beneficio beneficio) {
+        beneficio.setId(null);
+        em.persist(beneficio);
+        return beneficio;
+    }
 
-        from.setValor(from.getValor().subtract(amount));
-        to.setValor(to.getValor().add(amount));
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public Beneficio atualizar(Beneficio beneficio) {
+        return em.merge(beneficio);
+    }
 
-        try {
-            em.merge(from);
-            em.merge(to);
-
-            em.flush();
-
-        } catch (OptimisticLockException e) {
-            throw new RuntimeException("A operação não pôde ser concluída devido a uma atualização concorrente. Por favor, tente novamente.", e);
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void deletar(Long id) {
+        Beneficio beneficio = em.getReference(Beneficio.class, id);
+        if (beneficio != null) {
+            em.remove(beneficio);
         }
     }
 
