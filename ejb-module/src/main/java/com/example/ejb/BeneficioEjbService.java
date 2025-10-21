@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Stateless
-public class BeneficioEjbService {
+public class BeneficioEjbService implements BeneficioTransferRemote {
 
     @PersistenceContext(unitName = "default")
     private EntityManager em;

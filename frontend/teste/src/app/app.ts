@@ -1,5 +1,4 @@
 import {Component, computed, inject, OnInit, signal, WritableSignal} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import {CommonModule, DecimalPipe} from '@angular/common';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {BeneficioService} from './service/beneficio-service';
@@ -8,9 +7,10 @@ import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [DecimalPipe, ReactiveFormsModule, CommonModule],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App implements OnInit {
 

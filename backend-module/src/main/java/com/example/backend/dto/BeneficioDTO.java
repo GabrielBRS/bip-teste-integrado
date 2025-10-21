@@ -1,7 +1,8 @@
-package com.example.backend;
+package com.example.backend.dto;
+
+import com.example.backend.entity.Beneficio;
 
 import java.math.BigDecimal;
-import com.example.ejb.Beneficio;
 
 public record BeneficioDTO(
         Long id,
