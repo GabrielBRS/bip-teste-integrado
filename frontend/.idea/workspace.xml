@@ -6,11 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="32a1e84d-30d0-41f8-8e45-98a36dd8e47a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teste/src/app/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/teste/src/app/app.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teste/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/teste/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teste/src/app/beneficio/beneficio.ts" beforeDir="false" afterPath="$PROJECT_DIR$/teste/src/app/beneficio/beneficio.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teste/src/app/bootstrapApplication.ts" beforeDir="false" afterPath="$PROJECT_DIR$/teste/src/app/bootstrapApplication.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teste/src/app/service/beneficio.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/teste/src/app/service/beneficio.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teste/src/app/service/beneficio.ts" beforeDir="false" afterPath="$PROJECT_DIR$/teste/src/app/service/beneficio-service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teste/src/app/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/teste/src/app/app.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teste/src/app/beneficio/beneficio.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teste/src/app/beneficio/beneficio.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teste/src/app/beneficio/beneficio.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teste/src/app/beneficio/beneficio.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1761002939703</updated>
       <workItem from="1761002941647" duration="6553000" />
-      <workItem from="1761078200838" duration="2729000" />
+      <workItem from="1761078200838" duration="3604000" />
     </task>
     <servers />
   </component>
