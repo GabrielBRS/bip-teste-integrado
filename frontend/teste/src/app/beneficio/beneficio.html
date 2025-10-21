@@ -1,0 +1,140 @@
+<div class="bg-slate-900 min-h-screen font-sans text-slate-300">
+  <div class="container mx-auto p-4 md:p-8">
+
+    <header class="mb-8 flex justify-between items-center">
+      <div>
+        <h1 class="text-4xl font-bold text-cyan-400 tracking-tight">Gerenciador de Benefícios</h1>
+        <p class="text-slate-400 mt-1">Interface para gestão e transferência de valores.</p>
+      </div>
+      <button (click)="openNewForm()" class="bg-cyan-500 hover:bg-cyan-600 text-slate-900 font-bold py-2 px-4 rounded-lg shadow-lg shadow-cyan-500/20 transition-transform transform hover:scale-105">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+        </svg>
+        Novo Benefício
+      </button>
+    </header>
+
+    @if (notification(); as msg) {
+      <div [ngClass]="msg.type === 'error' ? 'bg-red-900/50 border-red-500' : 'bg-green-900/50 border-green-500'"
+           class="border-l-4 p-4 rounded-lg mb-6 text-white" role="alert">
+        <p class="font-bold">{{ msg.type === 'error' ? 'Erro' : 'Sucesso' }}</p>
+        <p>{{ msg.message }}</p>
+      </div>
+    }
+
+    <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+      <div class="lg:col-span-1">
+        @if (isFormVisible()) {
+          <div class="bg-slate-800 p-6 rounded-xl shadow-2xl sticky top-8">
+            <h2 class="text-2xl font-semibold text-cyan-300 mb-4">{{ formTitle() }}</h2>
+            <form [formGroup]="beneficioForm" (ngSubmit)="saveBeneficio()">
+
+              <div class="mb-4">
+                <label for="nome" class="block mb-2 text-sm font-medium text-slate-400">Nome</label>
+                <input type="text" id="nome" formControlName="nome" class="w-full bg-slate-700 border border-slate-600 text-white rounded-lg p-2.5 focus:ring-cyan-500 focus:border-cyan-500 transition">
+              </div>
+
+              <div class="mb-4">
+                <label for="descricao" class="block mb-2 text-sm font-medium text-slate-400">Descrição</label>
+                <textarea id="descricao" formControlName="descricao" rows="3" class="w-full bg-slate-700 border border-slate-600 text-white rounded-lg p-2.5 focus:ring-cyan-500 focus:border-cyan-500 transition"></textarea>
+              </div>
+
+              <div class="mb-6">
+                <label for="valor" class="block mb-2 text-sm font-medium text-slate-400">Valor (R$)</label>
+                <input type="number" id="valor" formControlName="valor" class="w-full bg-slate-700 border border-slate-600 text-white rounded-lg p-2.5 focus:ring-cyan-500 focus:border-cyan-500 transition">
+              </div>
+
+              <div class="flex items-center gap-4">
+                <button type="submit" [disabled]="beneficioForm.invalid" class="flex-grow bg-green-600 hover:bg-green-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-bold py-2 px-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                  Salvar
+                </button>
+                <button type="button" (click)="cancelEdit()" class="flex-grow bg-slate-600 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                  Cancelar
+                </button>
+              </div>
+
+            </form>
+          </div>
+        }
+      </div>
+
+      <div class="lg:col-span-2">
+        <div class="bg-slate-800 p-4 rounded-xl shadow-2xl">
+          <div class="flex justify-between items-center mb-4 px-2">
+            <h2 class="text-2xl font-semibold text-cyan-300">Benefícios Cadastrados</h2>
+            <button (click)="openTransferModal()" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg shadow-indigo-500/20 transition-transform transform hover:scale-105">
+              Transferir Valor
+            </button>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left text-slate-400">
+              <thead class="text-xs text-cyan-400 uppercase bg-slate-700/50">
+              <tr>
+                <th scope="col" class="px-6 py-3">ID</th>
+                <th scope="col" class="px-6 py-3">Nome</th>
+                <th scope="col" class="px-6 py-3">Valor</th>
+                <th scope="col" class="px-6 py-3 text-center">Ações</th>
+              </tr>
+              </thead>
+              <tbody>
+                @for (item of beneficios(); track item.id) {
+                  <tr class="bg-slate-800 border-b border-slate-700 hover:bg-slate-700/50 transition-colors">
+                    <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">{{ item.id }}</th>
+                    <td class="px-6 py-4">{{ item.nome }}</td>
+                    <td class="px-6 py-4">{{ item.valor | number:'1.2-2' }}</td>
+                    <td class="px-6 py-4 text-center space-x-2">
+                      <button (click)="selectBeneficio(item)" class="font-medium text-blue-400 hover:underline">Editar</button>
+                      <button (click)="deleteBeneficio(item)" class="font-medium text-red-500 hover:underline">Excluir</button>
+                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td colspan="4" class="text-center py-8 text-slate-500">Nenhum benefício encontrado.</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    @if(isTransferModalVisible()) {
+      <div class="fixed inset-0 bg-black/70 flex items-center justify-center z-50" (click)="closeTransferModal()">
+        <div class="bg-slate-800 rounded-xl shadow-2xl p-8 w-full max-w-md" (click)="$event.stopPropagation()">
+          <h2 class="text-2xl font-semibold text-indigo-300 mb-6">Realizar Transferência</h2>
+          <form [formGroup]="transferForm" (ngSubmit)="executeTransfer()">
+            <div class="mb-4">
+              <label for="fromId" class="block mb-2 text-sm font-medium text-slate-400">De</label>
+              <select id="fromId" formControlName="fromId" class="w-full bg-slate-700 border border-slate-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                <option [ngValue]="null" disabled>Selecione a origem</option>
+                @for(b of beneficios(); track b.id) { <option [ngValue]="b.id">{{b.nome}} (R$ {{b.valor | number:'1.2-2'}})</option> }
+              </select>
+            </div>
+            <div class="mb-4">
+              <label for="toId" class="block mb-2 text-sm font-medium text-slate-400">Para</label>
+              <select id="toId" formControlName="toId" class="w-full bg-slate-700 border border-slate-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                <option [ngValue]="null" disabled>Selecione o destino</option>
+                @for(b of beneficios(); track b.id) { <option [ngValue]="b.id">{{b.nome}} (R$ {{b.valor | number:'1.2-2'}})</option> }
+              </select>
+            </div>
+            <div class="mb-6">
+              <label for="amount" class="block mb-2 text-sm font-medium text-slate-400">Valor a Transferir (R$)</label>
+              <input type="number" id="amount" formControlName="amount" class="w-full bg-slate-700 border border-slate-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500 transition">
+            </div>
+            <div class="flex items-center gap-4 mt-8">
+              <button type="submit" [disabled]="transferForm.invalid" class="flex-grow bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-bold py-2 px-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                Confirmar Transferência
+              </button>
+              <button type="button" (click)="closeTransferModal()" class="flex-grow bg-slate-600 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    }
+
+  </div>
+</div>
