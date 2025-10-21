@@ -19,7 +19,7 @@ public class JpaConfig {
 
     @Bean
     public PlatformTransactionManager transactionManager() {
-        return new JpaTransactionManager(emf);
+        return new JpaTransactionManager(this.emf);
     }
 
 }

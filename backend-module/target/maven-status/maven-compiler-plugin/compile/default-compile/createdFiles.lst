@@ -1,8 +1,7 @@
 com/example/backend/BeneficioDTO.class
 com/example/backend/BeneficioSpringService.class
 com/example/backend/BackendApplication.class
-com/example/backend/JpaConfig.class
 com/example/backend/TransferRequestDTO.class
 com/example/backend/BeneficioController.class
-com/example/backend/Beneficio.class
+com/example/backend/config/JpaConfig.class
 com/example/backend/BeneficioRepository.class

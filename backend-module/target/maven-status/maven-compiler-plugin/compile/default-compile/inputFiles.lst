@@ -3,6 +3,6 @@
 /home/gabrielsousa/Documentos/Teste/bip-teste-integrado/backend-module/src/main/java/com/example/backend/TransferRequestDTO.java
 /home/gabrielsousa/Documentos/Teste/bip-teste-integrado/backend-module/src/main/java/com/example/backend/BeneficioSpringService.java
 /home/gabrielsousa/Documentos/Teste/bip-teste-integrado/backend-module/src/main/java/com/example/backend/BeneficioController.java
-/home/gabrielsousa/Documentos/Teste/bip-teste-integrado/backend-module/src/main/java/com/example/backend/JpaConfig.java
+/home/gabrielsousa/Documentos/Teste/bip-teste-integrado/backend-module/src/main/java/com/example/backend/config/JpaConfig.java
 /home/gabrielsousa/Documentos/Teste/bip-teste-integrado/backend-module/src/main/java/com/example/backend/Beneficio.java
 /home/gabrielsousa/Documentos/Teste/bip-teste-integrado/backend-module/src/main/java/com/example/backend/BeneficioRepository.java
