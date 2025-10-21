@@ -1,3 +1,4 @@
+com/example/ejb/BeneficioTransferRemote.class
 com/example/ejb/SaldoInsuficienteException.class
 com/example/ejb/Beneficio.class
 com/example/ejb/BeneficioEjbService.class

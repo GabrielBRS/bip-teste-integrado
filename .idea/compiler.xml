@@ -8,12 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="backend-module" />
         <module name="ejb-module" />
-        <module name="ear-module" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="app-ear" target="17" />
       <module name="bip-teste-integrado" target="17" />
+      <module name="ear-module" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
