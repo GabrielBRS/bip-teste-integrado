@@ -1,5 +1,6 @@
 package com.example.backend;
 
+import com.example.ejb.Beneficio;
 import com.example.ejb.BeneficioEjbService;
 import jakarta.ejb.EJB;
 import org.springframework.beans.factory.annotation.Autowired;
