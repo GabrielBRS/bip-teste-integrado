@@ -14,11 +14,16 @@ import java.util.stream.Collectors;
 @Service
 public class BeneficioSpringService {
 
-    @Autowired
-    private BeneficioRepository beneficioRepository;
+
+    private final BeneficioRepository beneficioRepository;
 
     @EJB(lookup = "java:global/ejb-module/BeneficioEjbService!com.example.ejb.BeneficioEjbService")
     private BeneficioEjbService beneficioEjbService;
+
+    @Autowired
+    public BeneficioSpringService(BeneficioRepository beneficioRepository) {
+        this.beneficioRepository = beneficioRepository;
+    }
 
     @Transactional(readOnly = true)
     public List<BeneficioDTO> listarTodos() {

@@ -22,6 +22,7 @@
     <modules>
         <module>ejb-module</module>
         <module>backend-module</module>
+        <module>ear-module</module>
     </modules>
 
 </project>

@@ -1,6 +1,7 @@
 package com.example.backend;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +12,12 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class BeneficioController {
 
+    private final BeneficioSpringService beneficioService;
+
     @Autowired
-    private BeneficioSpringService beneficioService;
+    public BeneficioController(@Lazy BeneficioSpringService beneficioService) {
+        this.beneficioService = beneficioService;
+    }
 
     @GetMapping
     public List<BeneficioDTO> list() {

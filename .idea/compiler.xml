@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="backend-module" />
         <module name="ejb-module" />
+        <module name="ear-module" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
