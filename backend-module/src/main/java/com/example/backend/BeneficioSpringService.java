@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @Service
 public class BeneficioSpringService {
 
-    @EJB(lookup = "java:global/ear-module-0.0.1-SNAPSHOT/ejb-module/BeneficioEjbService!com.example.ejb.BeneficioEjbService")
+//    @EJB(lookup = "java:global/ear-module-0.0.1-SNAPSHOT/ejb-module/BeneficioEjbService!com.example.ejb.BeneficioEjbService")
     private BeneficioEjbService beneficioEjbService;
 
     public List<BeneficioDTO> listarTodos() {
@@ -31,8 +31,6 @@ public class BeneficioSpringService {
         }
         return new BeneficioDTO(beneficio);
     }
-
-    // ... resto dos seus métodos delegando para beneficioEjbService ...
 
     public BeneficioDTO criar(BeneficioDTO dto) {
         Beneficio beneficio = dto.toEntity();
@@ -62,4 +60,5 @@ public class BeneficioSpringService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
+
 }
