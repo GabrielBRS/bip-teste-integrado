@@ -1,64 +1,115 @@
-/* --- Estilos Globais do Componente --- */
+// Use a variável de cor primária do Angular Material, com um fallback
+:host {
+  --app-primary-color: var(--mat-primary-500, #3f51b5);
+}
 
-.loading {
+/* --- Layout Principal do Card da Página --- */
+
+.page-card {
+  // Borda lateral para dar identidade visual "única"
+  border-left: 4px solid var(--app-primary-color);
+  // Remove o padding padrão para o cabeçalho e conteúdo
+  // poderem ir de ponta a ponta
+  padding: 0 !important;
+
+  // O card é o container relativo para o overlay de loading
+  position: relative;
+  overflow: hidden; // Garante que o overlay não vaze
+}
+
+/* --- Cabeçalho Unificado (Lista e Formulário) --- */
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap; // Quebra em telas pequenas
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px;
+  // Fundo sutil para destacar o cabeçalho
+  background-color: rgba(0, 0, 0, 0.02);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .header-icon {
+    // Ícone "hero"
+    font-size: 36px;
+    height: 36px;
+    width: 36px;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.75rem; // 28px
+  }
+
+  p {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .header-actions button mat-icon {
+    margin-right: 4px;
+  }
+}
+
+/* --- Conteúdo (Comum) --- */
+
+mat-card-content {
+  // Adiciona o padding que removemos do card
+  padding: 24px;
+  position: relative;
+}
+
+/* --- Overlay de Carregamento (Profissional) --- */
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.85); // Fundo branco translúcido
+  z-index: 10;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 64px 0;
   gap: 16px;
   color: rgba(0, 0, 0, 0.6);
 }
 
-.header {
-  margin-bottom: 24px;
-
-  h1 {
-    margin: 0;
-    font-size: 1.75rem;
-  }
-
-  p {
-    margin: 4px 0 0;
-    color: rgba(0, 0, 0, 0.6);
-  }
+// Quando estiver carregando, aplica opacidade ao conteúdo abaixo
+.loading {
+  opacity: 0.3;
+  pointer-events: none; // Impede cliques no conteúdo "fantasma"
 }
 
-/* --- Estilos da LISTA (Overview e Tabela) --- */
 
-.overview {
-  margin-bottom: 24px;
+/* --- Estilos Específicos da LISTA --- */
 
-  .header {
-    display: flex;
-    flex-wrap: wrap; // Permite quebra em telas menores
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-
-    button mat-icon {
-      margin-right: 4px;
-    }
-  }
+.filter-container {
+  padding-bottom: 24px;
 
   .filter-field {
     width: 100%;
-    margin-top: 16px;
+    max-width: 400px; // Limita a largura do filtro
+  }
 
-    // [NOVO] Estilo para o ícone de busca
-    mat-icon[matPrefix] {
-      margin-right: 8px;
-      color: rgba(0, 0, 0, 0.54);
-    }
+  mat-icon[matPrefix] {
+    margin-right: 8px;
+    color: rgba(0, 0, 0, 0.54);
   }
 }
 
-.table-card {
-  position: relative;
-}
-
 .table-container {
-  overflow-x: auto; // Garante rolagem horizontal em telas pequenas
+  overflow-x: auto;
+  transition: opacity 0.2s ease-in-out; // Transição suave
 }
 
 table {
@@ -75,7 +126,8 @@ table {
   margin-left: 4px;
 }
 
-.status {
+// Renomeado de .status para .status-chip para mais clareza
+.status-chip {
   padding: 4px 12px;
   border-radius: 12px;
   background-color: rgba(33, 150, 243, 0.1); // Azul
@@ -85,50 +137,61 @@ table {
   white-space: nowrap;
 }
 
-.status.inactive {
+.status-chip.inactive {
   background-color: rgba(211, 47, 47, 0.1); // Vermelho
   color: #d32f2f;
 }
 
-/* --- Estilos do FORMULÁRIO --- */
 
-.form-card {
-  max-width: 720px;
-  margin: 0 auto;
-  display: block;
-  padding: 24px;
+/* --- Estilos Específicos do FORMULÁRIO --- */
+
+form {
+  transition: opacity 0.2s ease-in-out; // Transição suave
 }
 
 .form-grid {
   display: grid;
   gap: 16px;
-  // [MELHORIA] Aumentado para acomodar ícones
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 
   .full-width {
-    grid-column: 1 / -1; // Ocupa todas as colunas
+    grid-column: 1 / -1;
   }
 
-  // [NOVO] Estilo para os ícones de prefixo
   mat-icon[matPrefix] {
     margin-right: 8px;
     color: rgba(0, 0, 0, 0.54);
   }
 
-  // [NOVO] Estilo para o sufixo de texto (BRL)
   span[matTextSuffix] {
     font-weight: 500;
     color: rgba(0, 0, 0, 0.6);
   }
 }
 
-.actions {
-  margin-top: 24px;
+.form-actions {
+  // Remove padding padrão do mat-card-actions
+  padding: 0 !important;
+  transition: opacity 0.2s ease-in-out;
+
+  mat-divider {
+    margin-bottom: 16px;
+  }
+
+  // Adiciona padding apenas ao container dos botões
+  button {
+    margin: 0 8px 16px 8px;
+  }
+
+  // Alinha botões à direita
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
+  gap: 8px;
+  // Adiciona padding lateral
+  padding: 0 16px !important;
 
-  button {
+  // Estilos do botão de salvar
+  button[type="submit"] {
     display: flex;
     align-items: center;
     gap: 6px;

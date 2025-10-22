@@ -2,39 +2,64 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: #f4f5f7;
 }
 
-mat-toolbar {
+.app-toolbar {
   position: sticky;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .brand {
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.25rem; // 20px
+  font-weight: 500;
+  text-decoration: none;
+  color: inherit;
+
+  mat-icon {
+    font-size: 28px;
+    height: 28px;
+    width: 28px;
+  }
 }
 
 .spacer {
   flex: 1 1 auto;
 }
 
-a.active {
-  font-weight: 600;
-}
-
 a[mat-button] {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
   text-transform: none;
+  font-weight: 400;
+
+  border-radius: 99px;
+  transition: background-color 0.2s ease-in-out;
+
+  mat-icon {
+    font-size: 20px;
+  }
 }
 
-main {
+a.active-link {
+  background-color: rgba(255, 255, 255, 0.15);
+  font-weight: 500;
+}
+
+.app-content {
   flex: 1;
   padding: 24px;
-  background-color: #f5f7fb;
-  overflow: auto;
-}
+  overflow-y: auto;
 
-main ::ng-deep .mat-mdc-card {
-  border-radius: 12px;
+  ::ng-deep .page-card {
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  }
 }

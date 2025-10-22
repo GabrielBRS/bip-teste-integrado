@@ -19,6 +19,7 @@ import { Subject, takeUntil, filter, switchMap } from 'rxjs';
 
 import {BeneficioModel, BeneficioRequest} from '../../core/models/beneficio.model';
 import { BeneficiosService } from '../../core/service/beneficio-service';
+import {MatDivider} from '@angular/material/divider';
 // import { ConfirmDialogComponent, ConfirmDialogData } from 'seu/caminho/confirm-dialog.component';
 
 @Component({
@@ -40,6 +41,7 @@ import { BeneficiosService } from '../../core/service/beneficio-service';
     MatTooltipModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatDivider
   ],
   templateUrl: './beneficio.html',
   styleUrl: './beneficio.scss',

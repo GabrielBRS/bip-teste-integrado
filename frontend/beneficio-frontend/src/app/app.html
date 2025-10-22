@@ -1,10 +1,28 @@
-<mat-toolbar color="primary">
-  <span class="brand">Gerenciador de Benefícios</span>
+<mat-toolbar color="primary" class="app-toolbar">
+
+  <a routerLink="/" class="brand">
+    <mat-icon>savings</mat-icon>
+    <span>Gerenciador de Benefícios</span>
+  </a>
+
   <span class="spacer"></span>
-  <a mat-button routerLink="/beneficio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Benefícios</a>
-  <a mat-button routerLink="/beneficio/transfer" routerLinkActive="active">Transferência</a>
+
+  <a mat-button
+     routerLink="/beneficio"
+     routerLinkActive="active-link"
+     [routerLinkActiveOptions]="{ exact: true }">
+    <mat-icon>domain</mat-icon>
+    <span>Benefícios</span>
+  </a>
+
+  <a mat-button
+     routerLink="/beneficio/transfer"
+     routerLinkActive="active-link">
+    <mat-icon>sync_alt</mat-icon>
+    <span>Transferência</span>
+  </a>
 </mat-toolbar>
 
-<main>
+<main class="app-content">
   <router-outlet />
 </main>
