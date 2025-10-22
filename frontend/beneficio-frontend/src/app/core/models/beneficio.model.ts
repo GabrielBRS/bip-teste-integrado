@@ -1,4 +1,4 @@
-export interface Beneficio {
+export interface BeneficioModel {
   id: number;
   nome: string;
   descricao?: string;

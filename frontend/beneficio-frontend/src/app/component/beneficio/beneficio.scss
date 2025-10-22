@@ -1,0 +1,121 @@
+/* --- Estilos Globais do Componente --- */
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 64px 0;
+  gap: 16px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.header {
+  margin-bottom: 24px;
+
+  h1 {
+    margin: 0;
+    font-size: 1.75rem;
+  }
+
+  p {
+    margin: 4px 0 0;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* --- Estilos da LISTA (Overview e Tabela) --- */
+
+.overview {
+  margin-bottom: 24px;
+
+  .header {
+    display: flex;
+    flex-wrap: wrap; // Permite quebra em telas menores
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    button mat-icon {
+      margin-right: 4px;
+    }
+  }
+
+  .filter-field {
+    width: 100%;
+    margin-top: 16px;
+  }
+}
+
+.table-card {
+  position: relative;
+}
+
+.table-container {
+  overflow-x: auto; // Garante rolagem horizontal em telas pequenas
+}
+
+table {
+  width: 100%;
+}
+
+.actions-header,
+.actions-cell {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.actions-cell button {
+  margin-left: 4px;
+}
+
+.status {
+  padding: 4px 12px;
+  border-radius: 12px;
+  background-color: rgba(33, 150, 243, 0.1); // Azul
+  color: #1976d2;
+  font-weight: 600;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.status.inactive {
+  background-color: rgba(211, 47, 47, 0.1); // Vermelho
+  color: #d32f2f;
+}
+
+/* --- Estilos do FORMULÁRIO --- */
+
+.form-card {
+  max-width: 720px;
+  margin: 0 auto;
+  display: block;
+  padding: 24px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+  .full-width {
+    grid-column: 1 / -1; // Ocupa todas as colunas
+  }
+}
+
+.actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .button-spinner {
+    margin: 0;
+  }
+}
