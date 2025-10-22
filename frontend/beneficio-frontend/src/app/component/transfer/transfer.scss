@@ -1,0 +1,83 @@
+// Escopo do Card de Transferência
+.transfer-card {
+  max-width: 720px;
+  margin: 0 auto;
+  display: block;
+  padding: 24px;
+}
+
+// Cabeçalho
+.header {
+  margin-bottom: 24px;
+  h1 {
+    margin: 0;
+    font-size: 1.75rem;
+  }
+  p {
+    margin: 4px 0 0;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+// Grid do Formulário
+.form-grid {
+  display: grid;
+  gap: 16px;
+  // Aumentei o minmax para acomodar melhor os ícones
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+  .full-width {
+    grid-column: 1 / -1;
+  }
+
+  // Estilo para os ícones de prefixo
+  mat-icon[matPrefix] {
+    margin-right: 8px;
+    color: rgba(0, 0, 0, 0.54); // Cor padrão de ícone do Material
+  }
+
+  // Estilo para o sufixo de texto (BRL)
+  span[matTextSuffix] {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+// Bloco de Erro Global (Contas Iguais)
+.form-error-container {
+  grid-column: 1 / -1; // Ocupa a largura total do grid
+  display: flex;
+  align-items: center;
+  gap: 10px; // Espaço entre o ícone e o texto
+  background-color: rgba(244, 67, 54, 0.1); // Fundo vermelho bem claro
+  color: #d32f2f; // Texto vermelho escuro
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  margin-top: 8px; // Espaçamento do campo acima
+
+  mat-icon {
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+  }
+}
+
+// Botões de Ação
+.actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 6px; // Espaço entre ícone/spinner e texto
+  }
+
+  // Spinner do botão
+  .button-spinner {
+    margin: 0;
+  }
+}

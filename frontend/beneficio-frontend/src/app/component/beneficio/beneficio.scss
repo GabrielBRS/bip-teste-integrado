@@ -44,6 +44,12 @@
   .filter-field {
     width: 100%;
     margin-top: 16px;
+
+    // [NOVO] Estilo para o ícone de busca
+    mat-icon[matPrefix] {
+      margin-right: 8px;
+      color: rgba(0, 0, 0, 0.54);
+    }
   }
 }
 
@@ -96,10 +102,23 @@ table {
 .form-grid {
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  // [MELHORIA] Aumentado para acomodar ícones
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 
   .full-width {
     grid-column: 1 / -1; // Ocupa todas as colunas
+  }
+
+  // [NOVO] Estilo para os ícones de prefixo
+  mat-icon[matPrefix] {
+    margin-right: 8px;
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+  // [NOVO] Estilo para o sufixo de texto (BRL)
+  span[matTextSuffix] {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
   }
 }
 
